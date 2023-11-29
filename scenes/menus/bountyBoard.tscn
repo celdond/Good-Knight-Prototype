@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cxeubfbkadcn"]
+[gd_scene load_steps=2 format=3 uid="uid://cxeubfbkadcn"]
+
+[ext_resource type="Script" path="res://scripts/meta_functions/contracts.cs" id="1_uqgcc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -31,6 +33,7 @@ offset_right = -0.0160522
 offset_bottom = 2.07996
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uqgcc")
 
 [node name="Panel" type="Panel" parent="MarginContainer/CanvasLayer/BountyBoard"]
 layout_mode = 2
@@ -42,9 +45,24 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Game Menu" type="VBoxContainer" parent="MarginContainer/CanvasLayer"]
 anchors_preset = -1
