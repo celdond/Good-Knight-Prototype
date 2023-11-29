@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cxeubfbkadcn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="BountyBoard" type="VBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.071
+anchor_right = 0.783
+anchor_bottom = 0.915
+offset_left = 0.00799561
+offset_top = -0.00800323
+offset_right = -0.0160522
+offset_bottom = 2.07996
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/CanvasLayer/BountyBoard"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Posts" type="Panel" parent="MarginContainer/CanvasLayer/BountyBoard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Game Menu" type="VBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.798
+anchor_top = 0.071
+anchor_right = 0.965
+anchor_bottom = 0.918
+offset_left = -0.296021
+offset_top = -0.00800323
+offset_right = 0.319946
+offset_bottom = 0.135986
+
+[node name="Panel" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CanvasLayer/Game Menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.403
+anchor_right = 1.0
+anchor_bottom = 0.619
+offset_left = 1.0
+offset_top = -0.00200272
+offset_right = 1.0
+offset_bottom = 0.0540009
+grow_horizontal = 2
+grow_vertical = 2
+text = "Example"
+
+[node name="Panel2" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
+layout_mode = 2
+size_flags_vertical = 3
