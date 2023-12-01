@@ -125,3 +125,6 @@ size_flags_vertical = 3
 [node name="Panel4" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[connection signal="button_down" from="MarginContainer/CanvasLayer/BountyBoard/Posts/BoardMargin/Board/Contract 1" to="MarginContainer/CanvasLayer/BountyBoard" method="_on_contract_button_down" binds= [1]]
+[connection signal="button_down" from="MarginContainer/CanvasLayer/BountyBoard/Posts/BoardMargin/Board/Contract 2" to="MarginContainer/CanvasLayer/BountyBoard" method="_on_contract_button_down" binds= [2]]
