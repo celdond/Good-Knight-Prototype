@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=5 format=3 uid="uid://bjxl1f45mvn24"]
+
+[ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
+[ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
+texture = ExtResource("2_r2r2u")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0sc6f"]
+sources/0 = SubResource("TileSetAtlasSource_5ufk3")
 
 [node name="contract1" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 512.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pmll8")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_0sc6f")
+cell_quadrant_size = 24
+format = 2
