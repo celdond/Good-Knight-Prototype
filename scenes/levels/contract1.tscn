@@ -114,6 +114,7 @@ cell_quadrant_size = 24
 format = 2
 
 [node name="player" parent="." instance=ExtResource("3_mi2c4")]
+position = Vector2(45, 79)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 

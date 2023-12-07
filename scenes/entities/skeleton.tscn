@@ -15,3 +15,11 @@ texture = ExtResource("2_auex0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 10.5)
 shape = SubResource("RectangleShape2D_3tklq")
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="."]
+position = Vector2(11, 24)
+target_position = Vector2(0, 4)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-10, 24)
+target_position = Vector2(0, 4)
