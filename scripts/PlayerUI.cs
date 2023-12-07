@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class playerUI : Control
+public partial class PlayerUI : Control
 {
 	public int health = 3;
 	private static int maxHealth = 3;
