@@ -55,16 +55,14 @@ public partial class Player : CharacterBody2D
 
 	private void Death() {
 		lives -= 1;
-		if (lives <= 0) {
-			// Game Over
-		} else {
-			// Spirit Form
-		}
+		SetProcessInput(false);
+		EmitSignal("LivesChange", lives);
 	}
 
 	private void Set_hp(int new_hp)
 	{
 		hp = new_hp;
+		EmitSignal("HpChange", hp);
 		if (hp <= 0) {
 			Death();
 		}
