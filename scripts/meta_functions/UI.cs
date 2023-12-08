@@ -8,8 +8,8 @@ public partial class UI : CanvasLayer
 	public ProgressBar health;
 	public override void _Ready()
 	{
-		lives = GetNode<ProgressBar>("Lives");
-		health = GetNode<ProgressBar>("Health");
+		lives = GetNode<ProgressBar>("Control/Lives");
+		health = GetNode<ProgressBar>("Control/Health");
 		lives.Value = 3;
 		health.Value = 3;
 	}

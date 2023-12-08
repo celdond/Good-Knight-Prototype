@@ -132,23 +132,32 @@ layer_0/tile_data = PackedInt32Array(73, 131072, 0, 74, 131072, 0, 75, 131072, 0
 position = Vector2(289, 96)
 
 [node name="UI" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
+process_mode = 3
+layer = 50
 script = ExtResource("5_c2474")
 
-[node name="Lives" type="ProgressBar" parent="UI"]
-offset_left = -514.0
-offset_top = -198.0
-offset_right = -388.0
-offset_bottom = -171.0
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lives" type="ProgressBar" parent="UI/Control"]
+offset_left = 33.0
+offset_top = 24.0
+offset_right = 159.0
+offset_bottom = 51.0
 max_value = 3.0
 step = 1.0
 value = 3.0
 
-[node name="Health" type="ProgressBar" parent="UI"]
-offset_left = -515.0
-offset_top = -233.0
-offset_right = -387.0
-offset_bottom = -206.0
+[node name="Health" type="ProgressBar" parent="UI/Control"]
+offset_left = 32.0
+offset_top = 59.0
+offset_right = 160.0
+offset_bottom = 86.0
 max_value = 3.0
 step = 1.0
 value = 3.0
