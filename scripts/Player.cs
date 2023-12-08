@@ -1,10 +1,13 @@
 using Godot;
 using System;
+using System.Linq.Expressions;
 
 public partial class Player : CharacterBody2D
 {
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
+	public int hp = 3;
+	public int lives = 3;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -13,19 +16,24 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 
-		if (Input.IsActionJustPressed("ui_down")) {
+		if (Input.IsActionJustPressed("ui_down"))
+		{
 			SetCollisionMaskValue(2, false);
-		} else if (Input.IsActionJustReleased("ui_down")) {
+		}
+		else if (Input.IsActionJustReleased("ui_down"))
+		{
 			SetCollisionMaskValue(2, true);
 		}
 
 		// Add the gravity.
-		if (!IsOnFloor()) {
+		if (!IsOnFloor())
+		{
 			velocity.Y += gravity * (float)delta;
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor()) {
+		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		{
 			velocity.Y = JumpVelocity;
 		}
 
@@ -43,5 +51,26 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void Death() {
+		lives -= 1;
+		if (lives <= 0) {
+			// Game Over
+		} else {
+			// Spirit Form
+		}
+	}
+
+	private void Set_hp(int new_hp)
+	{
+		hp = new_hp;
+		if (hp <= 0) {
+			Death();
+		}
+	}
+
+	public void Take_Damage() {
+		Set_hp(1);
 	}
 }
