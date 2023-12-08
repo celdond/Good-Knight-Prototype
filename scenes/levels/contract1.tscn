@@ -145,6 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Lives" type="ProgressBar" parent="UI/Control"]
+layout_mode = 0
 offset_left = 33.0
 offset_top = 24.0
 offset_right = 159.0
@@ -154,6 +155,7 @@ step = 1.0
 value = 3.0
 
 [node name="Health" type="ProgressBar" parent="UI/Control"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 59.0
 offset_right = 160.0

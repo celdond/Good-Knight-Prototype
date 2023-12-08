@@ -5,14 +5,17 @@ using System.Linq.Expressions;
 public partial class Player : CharacterBody2D
 {
 	private CustomAlerts CustomAlerts;
+	private Timer HitboxCooldown;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp = 3;
 	public int lives = 3;
+	public bool i_frames = false;
 
 	public override void _Ready()
 	{
 		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
+		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -78,6 +81,16 @@ public partial class Player : CharacterBody2D
 
 	public void OnHit()
 	{
-		Set_hp(hp - 1);
+		if (!i_frames)
+		{
+			Set_hp(hp - 1);
+			i_frames = true;
+			HitboxCooldown.Start();
+		}
+	}
+
+	public void _on_hitbox_cooldown_timeout()
+	{
+		i_frames = false;
 	}
 }

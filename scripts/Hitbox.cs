@@ -7,7 +7,6 @@ public partial class Hitbox : Area2D
 	{
 		if (body is Player)
 		{
-			GetNode("CollisionShape2D").SetDeferred("disabled", true);
 			body.Call("OnHit");
 		}
 	}

@@ -20,3 +20,7 @@ one_way_collision = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
 texture = ExtResource("1_bqn0h")
+
+[node name="hitbox_cooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="hitbox_cooldown" to="." method="_on_hitbox_cooldown_timeout"]
