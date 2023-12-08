@@ -4,10 +4,16 @@ using System.Linq.Expressions;
 
 public partial class Player : CharacterBody2D
 {
+	private CustomAlerts CustomAlerts;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp = 3;
 	public int lives = 3;
+
+	public override void _Ready()
+	{
+		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
+	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -53,22 +59,25 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	private void Death() {
+	private void Death()
+	{
 		lives -= 1;
 		SetProcessInput(false);
-		EmitSignal("LivesChange", lives);
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), lives);
 	}
 
 	private void Set_hp(int new_hp)
 	{
 		hp = new_hp;
-		EmitSignal("HpChange", hp);
-		if (hp <= 0) {
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.HPChange), hp);
+		if (hp <= 0)
+		{
 			Death();
 		}
 	}
 
-	public void Take_Damage() {
-		Set_hp(1);
+	public void OnHit()
+	{
+		Set_hp(hp - 1);
 	}
 }
