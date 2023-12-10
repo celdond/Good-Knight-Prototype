@@ -6,11 +6,14 @@ public partial class UI : CanvasLayer
 	private CustomAlerts CustomAlerts;
 	public ProgressBar lives;
 	public ProgressBar health;
+	public Control deathMenu;
+
 	public override void _Ready()
 	{
 		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
-		lives = GetNode<ProgressBar>("Control/Lives");
-		health = GetNode<ProgressBar>("Control/Health");
+		lives = GetNode<ProgressBar>("UIControl/Lives");
+		health = GetNode<ProgressBar>("UIControl/Health");
+		deathMenu = GetNode<Control>("UIControl/DeathMenu");
 		lives.Value = 3;
 		health.Value = 3;
 		CustomAlerts.LivesChange += LivesBarChange;
