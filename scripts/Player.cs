@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
 	public int hp = 3;
 	public int lives = 3;
 	public bool i_frames = false;
+	public bool alive = true;
 
 	public override void _Ready()
 	{
@@ -25,6 +26,17 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 
+		if (!IsOnFloor())
+		{
+			velocity.Y += gravity * (float)delta;
+		}
+
+		if (!alive) {
+			velocity.X = 0;
+			Velocity = velocity;
+			MoveAndSlide();
+			return;
+		}
 		if (Input.IsActionJustPressed("ui_down"))
 		{
 			SetCollisionMaskValue(2, false);
@@ -32,12 +44,6 @@ public partial class Player : CharacterBody2D
 		else if (Input.IsActionJustReleased("ui_down"))
 		{
 			SetCollisionMaskValue(2, true);
-		}
-
-		// Add the gravity.
-		if (!IsOnFloor())
-		{
-			velocity.Y += gravity * (float)delta;
 		}
 
 		// Handle Jump.
@@ -65,7 +71,7 @@ public partial class Player : CharacterBody2D
 	private void Death()
 	{
 		lives -= 1;
-		SetProcessInput(false);
+		alive = false;
 		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), lives);
 	}
 
