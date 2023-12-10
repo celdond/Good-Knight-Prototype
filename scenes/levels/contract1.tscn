@@ -136,7 +136,7 @@ process_mode = 3
 layer = 50
 script = ExtResource("5_c2474")
 
-[node name="Control" type="Control" parent="UI"]
+[node name="UIControl" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,7 +144,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Lives" type="ProgressBar" parent="UI/Control"]
+[node name="Lives" type="ProgressBar" parent="UI/UIControl"]
 layout_mode = 0
 offset_left = 33.0
 offset_top = 24.0
@@ -154,7 +154,7 @@ max_value = 3.0
 step = 1.0
 value = 3.0
 
-[node name="Health" type="ProgressBar" parent="UI/Control"]
+[node name="Health" type="ProgressBar" parent="UI/UIControl"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 59.0
@@ -164,16 +164,16 @@ max_value = 3.0
 step = 1.0
 value = 3.0
 
-[node name="DeathMenu" type="Control" parent="UI"]
+[node name="DeathMenu" type="Control" parent="UI/UIControl"]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GiveUpButton" type="Button" parent="UI/DeathMenu"]
+[node name="GiveUpButton" type="Button" parent="UI/UIControl/DeathMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -188,7 +188,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Give Up"
 
-[node name="Spirit" type="Button" parent="UI/DeathMenu"]
+[node name="Spirit" type="Button" parent="UI/UIControl/DeathMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -202,3 +202,5 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Spirit"
+
+[connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]

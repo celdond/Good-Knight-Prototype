@@ -20,11 +20,17 @@ public partial class UI : CanvasLayer
 		CustomAlerts.HPChange += HealthBarChange;
 	}
 
+	public void _on_give_up() {
+		string menu_scene = "res://scenes/menus/bountyBoard.tscn";
+		GetTree().ChangeSceneToFile(menu_scene);
+	}
+
 	private void HealthBarChange(int new_hp) {
 		health.Value = new_hp;
 	}
 
 	private void LivesBarChange(int new_lives) {
 		lives.Value = new_lives;
+		deathMenu.Show();
 	}
 }
