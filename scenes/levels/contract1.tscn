@@ -116,7 +116,7 @@ cell_quadrant_size = 24
 format = 2
 
 [node name="player" parent="." instance=ExtResource("3_mi2c4")]
-position = Vector2(45, 79)
+position = Vector2(47, 84)
 collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="player"]
