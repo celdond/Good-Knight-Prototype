@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=13 format=3 uid="uid://bjxl1f45mvn24"]
 
 [ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
 [ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
 [ext_resource type="PackedScene" uid="uid://b15iiviuqx2oj" path="res://scenes/entities/player.tscn" id="3_mi2c4"]
 [ext_resource type="PackedScene" uid="uid://1esjoljerxqw" path="res://scenes/entities/skeleton.tscn" id="5_25ve0"]
 [ext_resource type="Script" path="res://scripts/meta_functions/UI.cs" id="5_c2474"]
+[ext_resource type="AudioStream" uid="uid://bijb0176516ac" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
 texture = ExtResource("2_r2r2u")
@@ -202,5 +203,10 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Spirit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_y2pg4")
+volume_db = -12.381
+autoplay = true
 
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
