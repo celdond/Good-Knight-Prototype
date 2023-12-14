@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b15iiviuqx2oj" path="res://scenes/entities/player.tscn" id="3_mi2c4"]
 [ext_resource type="PackedScene" uid="uid://1esjoljerxqw" path="res://scenes/entities/skeleton.tscn" id="5_25ve0"]
 [ext_resource type="Script" path="res://scripts/meta_functions/UI.cs" id="5_c2474"]
-[ext_resource type="AudioStream" uid="uid://bijb0176516ac" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
+[ext_resource type="AudioStream" uid="uid://c0fky76f64ctb" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
 texture = ExtResource("2_r2r2u")
@@ -121,6 +121,7 @@ position = Vector2(-24, 79)
 collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(0, -20)
 zoom = Vector2(1.5, 1.5)
 
 [node name="platforms" type="TileMap" parent="."]
