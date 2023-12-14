@@ -7,9 +7,11 @@ public partial class Player : CharacterBody2D
 	private CustomAlerts CustomAlerts;
 	private Timer HitboxCooldown;
 	private AnimatedSprite2D _animatedSprite;
+	private CollisionShape2D attack;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp = 3;
+	private int attack_frames = 0;
 	public int lives = 3;
 	public bool i_frames = false;
 	public bool alive = true;
@@ -19,6 +21,7 @@ public partial class Player : CharacterBody2D
 		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		attack = GetNode<CollisionShape2D>("./AnimatedSprite2D/Area2D/Attack");
 	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -41,7 +44,21 @@ public partial class Player : CharacterBody2D
 			_animatedSprite.Play("down");
 			return;
 		}
-		if (Input.IsActionJustPressed("ui_down"))
+
+		if (i_frames)
+		{
+			_animatedSprite.Play("hit");
+		}
+		else if (Input.IsActionJustPressed("attack"))
+		{
+			_animatedSprite.Play("attack");
+			attack.Disabled = false;
+		}
+		else if (Input.IsActionJustReleased("attack"))
+		{
+			attack.Disabled = true;
+		}
+		else if (Input.IsActionJustPressed("ui_down"))
 		{
 			SetCollisionMaskValue(2, false);
 		}
@@ -56,28 +73,39 @@ public partial class Player : CharacterBody2D
 		if (direction.X != 0)
 		{
 			velocity.X = direction.X * Speed;
-			if (velocity.Y != 0)
+			if (!i_frames)
 			{
-				_animatedSprite.Play("jump");
-			}
-			else
-			{
-				_animatedSprite.Play("run");
+				if (velocity.Y != 0)
+				{
+					if (attack.Disabled) {
+						_animatedSprite.Play("jump");
+					}
+				}
+				else
+				{
+					_animatedSprite.Play("run");
+					attack.Disabled = true;
+				}
 			}
 
-			if (velocity.X > 0) {
-				_animatedSprite.FlipH = false;
-			} else if (velocity.X < 0) {
-				_animatedSprite.FlipH = true;
+			if (velocity.X > 0)
+			{
+				_animatedSprite.Scale = new Vector2(0.25f, 0.25f);
+			}
+			else if (velocity.X < 0)
+			{
+				_animatedSprite.Scale = new Vector2(-0.25f, 0.25f);
 			}
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			if (velocity.Y != 0)
+			if (velocity.Y != 0 && attack.Disabled && !i_frames)
 			{
 				_animatedSprite.Play("jump");
-			} else {
+			}
+			else if (attack.Disabled && !i_frames)
+			{
 				_animatedSprite.Play("idle");
 			}
 		}
@@ -115,6 +143,7 @@ public partial class Player : CharacterBody2D
 		{
 			Set_hp(hp - 1);
 			i_frames = true;
+			_animatedSprite.Play("hit");
 			HitboxCooldown.Start();
 		}
 	}

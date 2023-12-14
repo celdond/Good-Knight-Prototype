@@ -1,11 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://1esjoljerxqw"]
+[gd_scene load_steps=8 format=3 uid="uid://1esjoljerxqw"]
 
 [ext_resource type="Script" path="res://scripts/Skeleton.cs" id="1_uc1ej"]
+[ext_resource type="Texture2D" uid="uid://b7iorssde060s" path="res://assets/art/entity/minion/Enemy_Death.png" id="2_0jpcd"]
 [ext_resource type="Texture2D" uid="uid://o87l6xqlr3th" path="res://assets/art/entity/minion/Enemy_Idle.png" id="2_6i2d5"]
 [ext_resource type="PackedScene" uid="uid://cd4raq8rhueml" path="res://scenes/entities/entity_tools/Hitbox.tscn" id="3_i6s3j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cffcf"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6i2d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0jpcd")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_6i2d5")
@@ -30,6 +42,7 @@ script = ExtResource("1_uc1ej")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_cffcf")
 animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)

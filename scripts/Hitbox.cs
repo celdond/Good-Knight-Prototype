@@ -8,6 +8,8 @@ public partial class Hitbox : Area2D
 		if (body is Player)
 		{
 			body.Call("OnHit");
+		} else {
+			GD.Print(body);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b15iiviuqx2oj"]
+[gd_scene load_steps=12 format=3 uid="uid://b15iiviuqx2oj"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_tf8gm"]
 [ext_resource type="Texture2D" uid="uid://egyect0v4f01" path="res://assets/art/entity/character/Down.png" id="2_7enhn"]
@@ -9,11 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://b6hessja81avt" path="res://assets/art/entity/character/Run2.png" id="7_77378"]
 [ext_resource type="Texture2D" uid="uid://ba3hgqrnxhv7p" path="res://assets/art/entity/character/Stab.png" id="8_5r57e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk58n"]
-size = Vector2(14, 34)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6me6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5r57e")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_7enhn")
@@ -23,6 +28,15 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2k6jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2k6jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2k6jn")
+}, {
 "duration": 1.0,
 "texture": ExtResource("3_2k6jn")
 }],
@@ -56,33 +70,39 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5r57e")
-}],
-"loop": true,
-"name": &"stab",
-"speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4x0h"]
+size = Vector2(118, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk58n"]
+size = Vector2(14, 34)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 5
 collision_mask = 3
 script = ExtResource("1_tf8gm")
 
+[node name="hitbox_cooldown" type="Timer" parent="."]
+wait_time = 0.67
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_u6me6")
+animation = &"attack"
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="Attack" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(77, -2)
+shape = SubResource("RectangleShape2D_b4x0h")
+disabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_vk58n")
 one_way_collision = true
-
-[node name="hitbox_cooldown" type="Timer" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_u6me6")
-animation = &"stab"
-autoplay = "idle"
 
 [connection signal="timeout" from="hitbox_cooldown" to="." method="_on_hitbox_cooldown_timeout"]
