@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b15iiviuqx2oj" path="res://scenes/entities/player.tscn" id="3_mi2c4"]
 [ext_resource type="PackedScene" uid="uid://1esjoljerxqw" path="res://scenes/entities/skeleton.tscn" id="5_25ve0"]
 [ext_resource type="Script" path="res://scripts/meta_functions/UI.cs" id="5_c2474"]
-[ext_resource type="AudioStream" uid="uid://bijb0176516ac" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
+[ext_resource type="AudioStream" uid="uid://c0fky76f64ctb" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
 texture = ExtResource("2_r2r2u")
@@ -117,10 +117,12 @@ cell_quadrant_size = 24
 format = 2
 
 [node name="player" parent="." instance=ExtResource("3_mi2c4")]
-position = Vector2(47, 84)
+position = Vector2(-24, 79)
 collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(0, -20)
+zoom = Vector2(1.5, 1.5)
 
 [node name="platforms" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_smc6h")
@@ -130,7 +132,7 @@ layer_0/z_index = 11
 layer_0/tile_data = PackedInt32Array(73, 131072, 0, 74, 131072, 0, 75, 131072, 0, 76, 131072, 0, 262217, 131072, 0, 262218, 131072, 0, 262219, 131072, 0, 262220, 131072, 0, 524361, 131072, 0, 524362, 131072, 0, 524363, 131072, 0, 524364, 131072, 0)
 
 [node name="skeleton" parent="." instance=ExtResource("5_25ve0")]
-position = Vector2(289, 96)
+position = Vector2(292, 113)
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -142,6 +144,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = -5.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 

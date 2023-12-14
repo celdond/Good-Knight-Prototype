@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 {
 	private CustomAlerts CustomAlerts;
 	private Timer HitboxCooldown;
+	private AnimatedSprite2D _animatedSprite;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp = 3;
@@ -17,6 +18,7 @@ public partial class Player : CharacterBody2D
 	{
 		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
+		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -31,10 +33,12 @@ public partial class Player : CharacterBody2D
 			velocity.Y += gravity * (float)delta;
 		}
 
-		if (!alive) {
+		if (!alive)
+		{
 			velocity.X = 0;
 			Velocity = velocity;
 			MoveAndSlide();
+			_animatedSprite.Play("down");
 			return;
 		}
 		if (Input.IsActionJustPressed("ui_down"))
@@ -46,22 +50,42 @@ public partial class Player : CharacterBody2D
 			SetCollisionMaskValue(2, true);
 		}
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
-
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
+		if (direction.X != 0)
 		{
 			velocity.X = direction.X * Speed;
+			if (velocity.Y != 0)
+			{
+				_animatedSprite.Play("jump");
+			}
+			else
+			{
+				_animatedSprite.Play("run");
+			}
+
+			if (velocity.X > 0) {
+				_animatedSprite.FlipH = false;
+			} else if (velocity.X < 0) {
+				_animatedSprite.FlipH = true;
+			}
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			if (velocity.Y != 0)
+			{
+				_animatedSprite.Play("jump");
+			} else {
+				_animatedSprite.Play("idle");
+			}
+		}
+
+		// Handle Jump.
+		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		{
+			velocity.Y = JumpVelocity;
 		}
 
 		Velocity = velocity;
