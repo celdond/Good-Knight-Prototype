@@ -38,6 +38,7 @@ public partial class Player : CharacterBody2D
 			velocity.X = 0;
 			Velocity = velocity;
 			MoveAndSlide();
+			_animatedSprite.Play("down");
 			return;
 		}
 		if (Input.IsActionJustPressed("ui_down"))
