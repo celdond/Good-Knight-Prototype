@@ -152,4 +152,12 @@ public partial class Player : CharacterBody2D
 	{
 		i_frames = false;
 	}
+
+	public void _on_attack_entered(Node2D body)
+	{
+		if (body is CharacterBody2D && body is not Player)
+		{
+			body.Call("OnHit");
+		}
+	}
 }

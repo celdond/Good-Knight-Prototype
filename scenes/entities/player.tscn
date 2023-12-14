@@ -93,6 +93,8 @@ animation = &"attack"
 autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 8
+collision_mask = 4
 
 [node name="Attack" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(77, -2)
@@ -106,3 +108,4 @@ shape = SubResource("RectangleShape2D_vk58n")
 one_way_collision = true
 
 [connection signal="timeout" from="hitbox_cooldown" to="." method="_on_hitbox_cooldown_timeout"]
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_attack_entered"]
