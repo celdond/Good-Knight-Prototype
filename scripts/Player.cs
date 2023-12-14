@@ -65,7 +65,9 @@ public partial class Player : CharacterBody2D
 			}
 
 			if (velocity.X > 0) {
-				
+				_animatedSprite.FlipH = false;
+			} else if (velocity.X < 0) {
+				_animatedSprite.FlipH = true;
 			}
 		}
 		else
