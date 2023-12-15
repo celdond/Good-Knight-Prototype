@@ -4,6 +4,7 @@ using System;
 public partial class UI : CanvasLayer
 {
 	private CustomAlerts CustomAlerts;
+	private PlayerStats PlayerStats;
 	public ProgressBar lives;
 	public ProgressBar health;
 	public Control deathMenu;
@@ -13,6 +14,7 @@ public partial class UI : CanvasLayer
 
 	public override void _Ready()
 	{
+		PlayerStats = GetNode<PlayerStats>("/root/contract1/PlayerStats");
 		CustomAlerts = GetNode<CustomAlerts>("/root/contract1/CustomAlerts");
 		lives = GetNode<ProgressBar>("/root/contract1/UI/UIControl/Lives");
 		health = GetNode<ProgressBar>("/root/contract1/UI/UIControl/Health");
@@ -50,6 +52,12 @@ public partial class UI : CanvasLayer
 	public void _on_retry() {
 		UIOpen = false;
 		GetTree().ChangeSceneToFile("res://scenes/levels/contract1.tscn");
+	}
+
+	public void _on_spirit_pressed() {
+		UIOpen = false;
+		deathMenu.Hide();
+		PlayerStats._summon_spirit();
 	}
 
 	private void HealthBarChange(int new_hp) {

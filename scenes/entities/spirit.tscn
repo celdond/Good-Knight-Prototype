@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://bajaeqsqqaqb2"]
+
+[ext_resource type="Script" path="res://scripts/Spirit.cs" id="1_ex0pd"]
+[ext_resource type="Texture2D" uid="uid://b4idypge8qmyq" path="res://assets/art/entity/spirit/Spirit_Down.png" id="1_ish0p"]
+[ext_resource type="Texture2D" uid="uid://bu61g6lq4nqv4" path="res://assets/art/entity/spirit/Spirit_Idle.png" id="2_ibbie"]
+[ext_resource type="Texture2D" uid="uid://32ocqp0bsfb" path="res://assets/art/entity/spirit/Spirit_Up.png" id="3_o6mua"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yv52h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ish0p")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ibbie")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o6mua")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bd4f"]
+size = Vector2(8, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjs3w"]
+size = Vector2(40, 38)
+
+[node name="Spirit" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ex0pd")
+
+[node name="hitbox_cooldown" type="Timer" parent="."]
+wait_time = 0.67
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_yv52h")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_3bd4f")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="Attack" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wjs3w")
+disabled = true
+
+[connection signal="timeout" from="hitbox_cooldown" to="." method="_on_hitbox_cooldown_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

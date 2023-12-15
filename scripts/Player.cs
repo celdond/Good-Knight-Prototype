@@ -5,27 +5,44 @@ using System.Linq.Expressions;
 public partial class Player : CharacterBody2D
 {
 	private CustomAlerts CustomAlerts;
+	private PlayerStats PlayerStats;
 	private Timer HitboxCooldown;
 	private AnimatedSprite2D _animatedSprite;
 	private CollisionShape2D attack;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
-	public int hp = 3;
+	public int hp;
+	public int lives;
 	private int attack_frames = 0;
-	public int lives = 3;
 	public bool i_frames = false;
 	public bool alive = true;
 
 	public override void _Ready()
 	{
+		PlayerStats = GetNode<PlayerStats>("/root/contract1/PlayerStats");
 		CustomAlerts = GetNode<CustomAlerts>("/root/contract1/CustomAlerts");
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		attack = GetNode<CollisionShape2D>("./AnimatedSprite2D/Area2D/Attack");
+		hp = PlayerStats.hp;
+		lives = PlayerStats.lives;
 	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+	public void _enable() {
+		hp = PlayerStats.hp;
+		Set_hp(hp);
+		lives = PlayerStats.lives;
+		alive = true;
+		SetPhysicsProcess(true);
+	}
+
+	public void _disable() {
+		hp = PlayerStats.hp;
+		SetPhysicsProcess(false);
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -42,6 +59,7 @@ public partial class Player : CharacterBody2D
 			Velocity = velocity;
 			MoveAndSlide();
 			_animatedSprite.Play("down");
+			_disable();
 			return;
 		}
 
@@ -77,7 +95,8 @@ public partial class Player : CharacterBody2D
 			{
 				if (velocity.Y != 0)
 				{
-					if (attack.Disabled) {
+					if (attack.Disabled)
+					{
 						_animatedSprite.Play("jump");
 					}
 				}
@@ -122,12 +141,8 @@ public partial class Player : CharacterBody2D
 
 	private void Death(bool end)
 	{
-		lives -= 1;
 		alive = false;
-		if (lives <= 0) {
-			end = true;
-		}
-		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), lives, end);
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), PlayerStats.lives, end);
 	}
 
 	private void Set_hp(int new_hp)

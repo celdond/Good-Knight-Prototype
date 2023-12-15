@@ -49,10 +49,12 @@ shape = SubResource("RectangleShape2D_3tklq")
 [node name="LedgeCheckRight" type="RayCast2D" parent="."]
 position = Vector2(2, 11)
 target_position = Vector2(0, 4)
+collision_mask = 3
 
 [node name="LedgeCheckLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 11)
 target_position = Vector2(0, 4)
+collision_mask = 3
 
 [node name="Hitbox" parent="." instance=ExtResource("3_i6s3j")]
 collision_layer = 8
