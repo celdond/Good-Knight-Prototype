@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=21 format=3 uid="uid://bjxl1f45mvn24"]
 
 [ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
 [ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
@@ -91,6 +91,9 @@ size = Vector2(7311, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hffm0"]
 size = Vector2(34, 834)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc5fx"]
+size = Vector2(5248.5, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkqvv"]
 size = Vector2(540, 20)
@@ -282,6 +285,14 @@ limit_right = 7199
 limit_bottom = 400
 editor_draw_limits = true
 
+[node name="CameraForBoss" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
+limit_left = 5500
+limit_top = 400
+limit_right = 7200
+limit_bottom = 1250
+editor_draw_limits = true
+
 [node name="borderLeft" parent="." instance=ExtResource("8_412h2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="borderLeft"]
@@ -300,13 +311,12 @@ shape = SubResource("RectangleShape2D_g0h3k")
 position = Vector2(7206, -91)
 shape = SubResource("RectangleShape2D_hffm0")
 
-[node name="CameraForBoss" type="Camera2D" parent="."]
-zoom = Vector2(1.25, 1.25)
-limit_left = 5500
-limit_top = 400
-limit_right = 7200
-limit_bottom = 1250
-editor_draw_limits = true
+[node name="borderBottom" parent="." instance=ExtResource("8_412h2")]
+position = Vector2(645, 737)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borderBottom"]
+position = Vector2(1889.75, -262)
+shape = SubResource("RectangleShape2D_mc5fx")
 
 [node name="CameraSwap" type="Area2D" parent="."]
 collision_layer = 8
@@ -316,6 +326,24 @@ script = ExtResource("10_rcrar")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraSwap"]
 position = Vector2(5769, 400)
 shape = SubResource("RectangleShape2D_tkqvv")
+
+[node name="skeleton2" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(3874, 281)
+
+[node name="skeleton3" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(1835, 185)
+
+[node name="skeleton4" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(1448, 65)
+
+[node name="skeleton5" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(4882, 185)
+
+[node name="skeleton6" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(5586, 89)
+
+[node name="skeleton7" parent="." instance=ExtResource("5_25ve0")]
+position = Vector2(5818, -79)
 
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/ContinueButton" to="UI" method="_on_continue"]
