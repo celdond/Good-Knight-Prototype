@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections;
 
 public partial class Skeleton : CharacterBody2D
 {
@@ -18,6 +19,9 @@ public partial class Skeleton : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_animatedSprite.Animation == "death") {
+			QueueFree();
+		}
 		Vector2 velocity = Velocity;
 		bool ledgeFound = (!rightCheck.IsColliding()) || (!leftCheck.IsColliding());
 
@@ -46,6 +50,6 @@ public partial class Skeleton : CharacterBody2D
 
 	public void OnHit()
 	{
-		
+		_animatedSprite.Play("death");
 	}
 }
