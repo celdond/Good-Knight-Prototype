@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections;
 
 public partial class Skeleton : CharacterBody2D
 {
@@ -8,6 +9,7 @@ public partial class Skeleton : CharacterBody2D
 	public Vector2 direction = Vector2.Right;
 	public RayCast2D rightCheck;
 	public RayCast2D leftCheck;
+	public bool enemy = true;
 	public override void _Ready()
 	{
 		rightCheck = GetNode<RayCast2D>("LedgeCheckRight");
@@ -17,6 +19,9 @@ public partial class Skeleton : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_animatedSprite.Animation == "death") {
+			QueueFree();
+		}
 		Vector2 velocity = Velocity;
 		bool ledgeFound = (!rightCheck.IsColliding()) || (!leftCheck.IsColliding());
 
@@ -26,9 +31,12 @@ public partial class Skeleton : CharacterBody2D
 		}
 
 		velocity.X = direction.X * 15;
-		if (velocity.X > 0) {
+		if (velocity.X > 0)
+		{
 			_animatedSprite.FlipH = true;
-		} else if (velocity.X < 0) {
+		}
+		else if (velocity.X < 0)
+		{
 			_animatedSprite.FlipH = false;
 		}
 
@@ -38,5 +46,10 @@ public partial class Skeleton : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void OnHit()
+	{
+		_animatedSprite.Play("death");
 	}
 }
