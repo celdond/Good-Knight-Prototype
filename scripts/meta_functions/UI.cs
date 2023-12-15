@@ -7,6 +7,7 @@ public partial class UI : CanvasLayer
 	public ProgressBar lives;
 	public ProgressBar health;
 	public Control deathMenu;
+	public Control pauseMenu;
 
 	public override void _Ready()
 	{
@@ -14,13 +15,23 @@ public partial class UI : CanvasLayer
 		lives = GetNode<ProgressBar>("UIControl/Lives");
 		health = GetNode<ProgressBar>("UIControl/Health");
 		deathMenu = GetNode<Control>("UIControl/DeathMenu");
+		pauseMenu = GetNode<Control>("UIControl/PauseMenu");
 		lives.Value = 3;
 		health.Value = 3;
 		CustomAlerts.LivesChange += LivesBarChange;
 		CustomAlerts.HPChange += HealthBarChange;
 	}
 
-	public void _on_give_up() {
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+		if (@event.IsAction("pause")) {
+			GetTree().Paused = true;
+			pauseMenu.Show();
+		}
+	}
+
+    public void _on_give_up() {
+		GetTree().Paused = false;
 		string menu_scene = "res://scenes/menus/bountyBoard.tscn";
 		GetTree().ChangeSceneToFile(menu_scene);
 	}
