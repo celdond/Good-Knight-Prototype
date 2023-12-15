@@ -30,6 +30,11 @@ public partial class UI : CanvasLayer
 		}
 	}
 
+	public void _on_continue() {
+		GetTree().Paused = false;
+		pauseMenu.Hide();
+	}
+
     public void _on_give_up() {
 		GetTree().Paused = false;
 		string menu_scene = "res://scenes/menus/bountyBoard.tscn";

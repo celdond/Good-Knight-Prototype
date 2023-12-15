@@ -318,5 +318,6 @@ position = Vector2(5769, 400)
 shape = SubResource("RectangleShape2D_tkqvv")
 
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
+[connection signal="pressed" from="UI/UIControl/PauseMenu/ContinueButton" to="UI" method="_on_continue"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/QuitButton" to="UI" method="_on_give_up"]
 [connection signal="body_entered" from="CameraSwap" to="CameraSwap" method="_on_body_entered"]
