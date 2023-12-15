@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		CustomAlerts = GetNode<CustomAlerts>("/root/CustomAlerts");
+		CustomAlerts = GetNode<CustomAlerts>("/root/contract1/CustomAlerts");
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		attack = GetNode<CollisionShape2D>("./AnimatedSprite2D/Area2D/Attack");
@@ -120,11 +120,14 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	private void Death()
+	private void Death(bool end)
 	{
 		lives -= 1;
 		alive = false;
-		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), lives);
+		if (lives <= 0) {
+			end = true;
+		}
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), lives, end);
 	}
 
 	private void Set_hp(int new_hp)
@@ -133,7 +136,7 @@ public partial class Player : CharacterBody2D
 		CustomAlerts.EmitSignal(nameof(CustomAlerts.HPChange), hp);
 		if (hp <= 0)
 		{
-			Death();
+			Death(false);
 		}
 	}
 

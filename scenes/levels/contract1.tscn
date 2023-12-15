@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=24 format=3 uid="uid://bjxl1f45mvn24"]
 
 [ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
 [ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://c0fky76f64ctb" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 [ext_resource type="PackedScene" uid="uid://cunyc4qvsjny7" path="res://scenes/entities/boss.tscn" id="7_2loth"]
 [ext_resource type="PackedScene" uid="uid://c8yv08no6waol" path="res://scenes/entities/border.tscn" id="8_412h2"]
+[ext_resource type="Script" path="res://scripts/meta_functions/DeathZone.cs" id="10_id4o3"]
 [ext_resource type="Script" path="res://scripts/meta_functions/CameraSwap.cs" id="10_rcrar"]
+[ext_resource type="Script" path="res://scripts/CustomAlerts.cs" id="11_su07k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
 texture = ExtResource("2_r2r2u")
@@ -98,7 +100,13 @@ size = Vector2(5248.5, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkqvv"]
 size = Vector2(540, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0an3"]
+size = Vector2(5234, 25)
+
 [node name="contract1" type="Node2D"]
+
+[node name="CustomAlerts" type="Node" parent="."]
+script = ExtResource("11_su07k")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -266,6 +274,60 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Quit Contract"
 
+[node name="DeadEndMenu" type="Control" parent="UI/UIControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathLabel" type="Label" parent="UI/UIControl/DeadEndMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -68.0
+offset_right = 76.5
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Souls was Lost"
+
+[node name="RetryButton" type="Button" parent="UI/UIControl/DeadEndMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -15.5
+offset_right = -140.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry Contract"
+
+[node name="QuitButton" type="Button" parent="UI/UIControl/DeadEndMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = -15.5
+offset_right = 257.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit Contract"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_y2pg4")
 volume_db = -12.381
@@ -327,6 +389,15 @@ script = ExtResource("10_rcrar")
 position = Vector2(5769, 400)
 shape = SubResource("RectangleShape2D_tkqvv")
 
+[node name="DeathZone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("10_id4o3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(2527, 449.5)
+shape = SubResource("RectangleShape2D_i0an3")
+
 [node name="skeleton2" parent="." instance=ExtResource("5_25ve0")]
 position = Vector2(3874, 281)
 
@@ -348,4 +419,7 @@ position = Vector2(5818, -79)
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/ContinueButton" to="UI" method="_on_continue"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/QuitButton" to="UI" method="_on_give_up"]
+[connection signal="pressed" from="UI/UIControl/DeadEndMenu/RetryButton" to="UI" method="_on_retry"]
+[connection signal="pressed" from="UI/UIControl/DeadEndMenu/QuitButton" to="UI" method="_on_give_up"]
 [connection signal="body_entered" from="CameraSwap" to="CameraSwap" method="_on_body_entered"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
