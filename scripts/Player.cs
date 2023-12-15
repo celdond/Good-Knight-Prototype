@@ -9,9 +9,11 @@ public partial class Player : CharacterBody2D
 	private Timer HitboxCooldown;
 	private AnimatedSprite2D _animatedSprite;
 	private CollisionShape2D attack;
+	private CollisionShape2D collider;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp;
+	public int lives;
 	private int attack_frames = 0;
 	public bool i_frames = false;
 	public bool alive = true;
@@ -23,11 +25,26 @@ public partial class Player : CharacterBody2D
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		attack = GetNode<CollisionShape2D>("./AnimatedSprite2D/Area2D/Attack");
+		collider = GetNode<CollisionShape2D>("CollisionShape2D");
 		hp = PlayerStats.hp;
+		lives = PlayerStats.lives;
 	}
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+	public void _enable() {
+		hp = PlayerStats.hp;
+		lives = PlayerStats.lives;
+		SetPhysicsProcess(true);
+		collider.Disabled = false;
+	}
+
+	public void _disable() {
+		hp = PlayerStats.hp;
+		collider.Disabled = true;
+		SetPhysicsProcess(false);
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -44,6 +61,7 @@ public partial class Player : CharacterBody2D
 			Velocity = velocity;
 			MoveAndSlide();
 			_animatedSprite.Play("down");
+			_disable();
 			return;
 		}
 

@@ -99,6 +99,11 @@ public partial class Spirit : CharacterBody2D
 		}
 	}
 
+	public void Death(bool end) {
+		PlayerStats._lives_update(0);
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), PlayerStats.lives, end);
+	}
+
 	public void _on_hitbox_cooldown_timeout()
 	{
 		i_frames = false;

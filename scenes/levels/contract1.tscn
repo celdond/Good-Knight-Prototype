@@ -155,6 +155,10 @@ collision_layer = 4
 remote_path = NodePath("../../CameraForPlatforming")
 
 [node name="Spirit" parent="." instance=ExtResource("5_waqmr")]
+position = Vector2(-166, -20)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Spirit"]
+remote_path = NodePath("../../CameraForPlatforming")
 
 [node name="platforms" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_smc6h")
@@ -345,7 +349,7 @@ position = Vector2(6878, 934)
 slide_on_ceiling = false
 
 [node name="CameraForPlatforming" type="Camera2D" parent="."]
-position = Vector2(-4, 77)
+position = Vector2(-166, -20)
 offset = Vector2(0, -20)
 zoom = Vector2(1.5, 1.5)
 limit_left = -91
@@ -424,6 +428,7 @@ position = Vector2(5586, 89)
 position = Vector2(5818, -79)
 
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
+[connection signal="pressed" from="UI/UIControl/DeathMenu/Spirit" to="UI" method="_on_spirit_pressed"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/ContinueButton" to="UI" method="_on_continue"]
 [connection signal="pressed" from="UI/UIControl/PauseMenu/QuitButton" to="UI" method="_on_give_up"]
 [connection signal="pressed" from="UI/UIControl/DeadEndMenu/RetryButton" to="UI" method="_on_retry"]

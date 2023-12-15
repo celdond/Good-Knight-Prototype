@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class PlayerStats : Node
 {
@@ -20,6 +21,11 @@ public partial class PlayerStats : Node
 
 	public void _summon_spirit()
 	{
-		
+		_lives_update(lives -= 1);
+		Godot.Vector2 placement = Spirit.Position;
+		Godot.Vector2 summon_place = Player.Position;
+		Player.Position = placement;
+		Spirit.Position = summon_place;
+		Spirit.Call("_enable");
 	}
 }

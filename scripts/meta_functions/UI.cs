@@ -54,6 +54,12 @@ public partial class UI : CanvasLayer
 		GetTree().ChangeSceneToFile("res://scenes/levels/contract1.tscn");
 	}
 
+	public void _on_spirit_pressed() {
+		UIOpen = false;
+		deathMenu.Hide();
+		PlayerStats._summon_spirit();
+	}
+
 	private void HealthBarChange(int new_hp) {
 		health.Value = new_hp;
 	}
