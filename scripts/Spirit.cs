@@ -30,9 +30,9 @@ public partial class Spirit : CharacterBody2D
 	}
 
 	public void _enable() {
+		SetPhysicsProcess(true);
 		hitbox.Disabled = false;
 		collider.Disabled = false;
-		SetPhysicsProcess(true);
 	}
 
 	public void _disable() {
@@ -52,6 +52,7 @@ public partial class Spirit : CharacterBody2D
 			Velocity = velocity;
 			MoveAndSlide();
 			_animatedSprite.Play("down");
+			_disable();
 			return;
 		}
 
@@ -110,9 +111,10 @@ public partial class Spirit : CharacterBody2D
 	}
 	public void _on_body_entered(Node2D body)
 	{
-		if (body is CharacterBody2D && body is not Spirit)
+		if (body is CharacterBody2D && body is not Spirit && body is not Player)
 		{
 			body.Call("OnHit");
+			PlayerStats._revive();
 		}
 	}
 }

@@ -148,14 +148,15 @@ cell_quadrant_size = 24
 format = 2
 
 [node name="player" parent="." instance=ExtResource("3_mi2c4")]
-position = Vector2(-4, 77)
+position = Vector2(-7, 75)
 collision_layer = 4
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../CameraForPlatforming")
 
 [node name="Spirit" parent="." instance=ExtResource("5_waqmr")]
-position = Vector2(-166, -20)
+z_index = 5
+position = Vector2(-209, -35)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Spirit"]
 remote_path = NodePath("../../CameraForPlatforming")
@@ -349,7 +350,7 @@ position = Vector2(6878, 934)
 slide_on_ceiling = false
 
 [node name="CameraForPlatforming" type="Camera2D" parent="."]
-position = Vector2(-166, -20)
+position = Vector2(-209, -35)
 offset = Vector2(0, -20)
 zoom = Vector2(1.5, 1.5)
 limit_left = -91

@@ -9,7 +9,6 @@ public partial class Player : CharacterBody2D
 	private Timer HitboxCooldown;
 	private AnimatedSprite2D _animatedSprite;
 	private CollisionShape2D attack;
-	private CollisionShape2D collider;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -450.0f;
 	public int hp;
@@ -25,7 +24,6 @@ public partial class Player : CharacterBody2D
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		attack = GetNode<CollisionShape2D>("./AnimatedSprite2D/Area2D/Attack");
-		collider = GetNode<CollisionShape2D>("CollisionShape2D");
 		hp = PlayerStats.hp;
 		lives = PlayerStats.lives;
 	}
@@ -35,14 +33,14 @@ public partial class Player : CharacterBody2D
 
 	public void _enable() {
 		hp = PlayerStats.hp;
+		Set_hp(hp);
 		lives = PlayerStats.lives;
+		alive = true;
 		SetPhysicsProcess(true);
-		collider.Disabled = false;
 	}
 
 	public void _disable() {
 		hp = PlayerStats.hp;
-		collider.Disabled = true;
 		SetPhysicsProcess(false);
 	}
 

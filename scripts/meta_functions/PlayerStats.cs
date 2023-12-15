@@ -21,11 +21,19 @@ public partial class PlayerStats : Node
 
 	public void _summon_spirit()
 	{
-		_lives_update(lives -= 1);
 		Godot.Vector2 placement = Spirit.Position;
 		Godot.Vector2 summon_place = Player.Position;
 		Player.Position = placement;
 		Spirit.Position = summon_place;
 		Spirit.Call("_enable");
+	}
+
+	public void _revive()
+	{
+		Godot.Vector2 revive_place = Spirit.Position;
+		Godot.Vector2 placement = Player.Position;
+		Spirit.Position = placement;
+		Player.Position = revive_place;
+		Player.Call("_enable");
 	}
 }
