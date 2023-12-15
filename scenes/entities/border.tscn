@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c8yv08no6waol"]
+
+[node name="border" type="StaticBody2D"]
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
