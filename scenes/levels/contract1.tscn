@@ -224,6 +224,45 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Spirit"
 
+[node name="PauseMenu" type="Control" parent="UI/UIControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="UI/UIControl/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -48.0
+offset_right = 39.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
+[node name="QuitButton" type="Button" parent="UI/UIControl/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = 12.0
+offset_right = 56.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit Contract"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_y2pg4")
 volume_db = -12.381
@@ -279,4 +318,6 @@ position = Vector2(5769, 400)
 shape = SubResource("RectangleShape2D_tkqvv")
 
 [connection signal="pressed" from="UI/UIControl/DeathMenu/GiveUpButton" to="UI" method="_on_give_up"]
+[connection signal="pressed" from="UI/UIControl/PauseMenu/ContinueButton" to="UI" method="_on_continue"]
+[connection signal="pressed" from="UI/UIControl/PauseMenu/QuitButton" to="UI" method="_on_give_up"]
 [connection signal="body_entered" from="CameraSwap" to="CameraSwap" method="_on_body_entered"]
