@@ -9,17 +9,36 @@ public partial class Spirit : CharacterBody2D
 	private PlayerStats PlayerStats;
 	private Timer HitboxCooldown;
 	private AnimatedSprite2D _animatedSprite;
+	private CollisionShape2D hitbox;
+	private CollisionShape2D collider;
 	public bool i_frames = false;
-	public bool alive = false;
+	public bool alive = true;
 	public int lives;
 
 	public override void _Ready()
 	{
+		hitbox = GetNode<CollisionShape2D>("Area2D/Attack");
+		collider = GetNode<CollisionShape2D>("Collision");
+		SetPhysicsProcess(false);
 		CustomAlerts = GetNode<CustomAlerts>("/root/contract1/CustomAlerts");
 		PlayerStats = GetNode<PlayerStats>("/root/contract1/PlayerStats");
+		hitbox = GetNode<CollisionShape2D>("Area2D/Attack");
+		collider = GetNode<CollisionShape2D>("Collision");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		HitboxCooldown = GetNode<Timer>("hitbox_cooldown");
 		lives = PlayerStats.lives;
+	}
+
+	public void _enable() {
+		hitbox.Disabled = false;
+		collider.Disabled = false;
+		SetPhysicsProcess(true);
+	}
+
+	public void _disable() {
+		hitbox.Disabled = true;
+		collider.Disabled = true;
+		SetPhysicsProcess(false);
 	}
 
 	public override void _PhysicsProcess(double delta)

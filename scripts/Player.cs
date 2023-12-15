@@ -79,7 +79,8 @@ public partial class Player : CharacterBody2D
 			{
 				if (velocity.Y != 0)
 				{
-					if (attack.Disabled) {
+					if (attack.Disabled)
+					{
 						_animatedSprite.Play("jump");
 					}
 				}
@@ -125,9 +126,7 @@ public partial class Player : CharacterBody2D
 	private void Death(bool end)
 	{
 		alive = false;
-		if (end) {
-			CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), PlayerStats.lives, end);
-		}
+		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), PlayerStats.lives, end);
 	}
 
 	private void Set_hp(int new_hp)

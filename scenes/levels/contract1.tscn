@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=26 format=3 uid="uid://bjxl1f45mvn24"]
 
 [ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
 [ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b15iiviuqx2oj" path="res://scenes/entities/player.tscn" id="3_mi2c4"]
 [ext_resource type="PackedScene" uid="uid://1esjoljerxqw" path="res://scenes/entities/skeleton.tscn" id="5_25ve0"]
 [ext_resource type="Script" path="res://scripts/meta_functions/UI.cs" id="5_c2474"]
+[ext_resource type="PackedScene" uid="uid://bajaeqsqqaqb2" path="res://scenes/entities/spirit.tscn" id="5_waqmr"]
 [ext_resource type="AudioStream" uid="uid://c0fky76f64ctb" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 [ext_resource type="PackedScene" uid="uid://cunyc4qvsjny7" path="res://scenes/entities/boss.tscn" id="7_2loth"]
 [ext_resource type="PackedScene" uid="uid://c8yv08no6waol" path="res://scenes/entities/border.tscn" id="8_412h2"]
@@ -152,6 +153,8 @@ collision_layer = 4
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../CameraForPlatforming")
+
+[node name="Spirit" parent="." instance=ExtResource("5_waqmr")]
 
 [node name="platforms" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_smc6h")
