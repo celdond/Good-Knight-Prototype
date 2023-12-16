@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Jam-ram"
+config/name="GoodKnight"
 run/main_scene="res://scenes/menus/bountyBoard.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.133333, 0.141176, 0.137255, 1)
+boot_splash/show_image=false
+config/icon="res://Icon.png"
 
 [dotnet]
 

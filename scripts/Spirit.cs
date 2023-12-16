@@ -29,13 +29,15 @@ public partial class Spirit : CharacterBody2D
 		lives = PlayerStats.lives;
 	}
 
-	public void _enable() {
+	public void _enable()
+	{
 		SetPhysicsProcess(true);
 		hitbox.Disabled = false;
 		collider.Disabled = false;
 	}
 
-	public void _disable() {
+	public void _disable()
+	{
 		hitbox.Disabled = true;
 		collider.Disabled = true;
 		SetPhysicsProcess(false);
@@ -69,10 +71,28 @@ public partial class Spirit : CharacterBody2D
 		if (direction.Y != 0)
 		{
 			velocity.Y = direction.Y * Speed;
+			if (velocity.Y > 0)
+			{
+				_animatedSprite.Play("down");
+			}
+			else if (velocity.Y < 0)
+			{
+				_animatedSprite.Play("up");
+			}
 		}
 		else
 		{
+			_animatedSprite.Play("idle");
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
+		}
+
+		if (velocity.X > 0)
+		{
+			_animatedSprite.Scale = new Vector2(0.25f, 0.25f);
+		}
+		else if (velocity.X < 0)
+		{
+			_animatedSprite.Scale = new Vector2(-0.25f, 0.25f);
 		}
 
 		Velocity = velocity;
@@ -100,7 +120,8 @@ public partial class Spirit : CharacterBody2D
 		}
 	}
 
-	public void Death(bool end) {
+	public void Death(bool end)
+	{
 		PlayerStats._lives_update(0);
 		CustomAlerts.EmitSignal(nameof(CustomAlerts.LivesChange), PlayerStats.lives, end);
 	}
