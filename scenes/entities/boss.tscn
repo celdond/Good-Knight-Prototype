@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cunyc4qvsjny7"]
+[gd_scene load_steps=5 format=3 uid="uid://cunyc4qvsjny7"]
 
 [ext_resource type="Texture2D" uid="uid://prvxk6mhkamq" path="res://assets/art/entity/boss/Boss_Idle.png" id="1_1ugw5"]
+[ext_resource type="Script" path="res://scripts/Boss.cs" id="1_7o4qo"]
+[ext_resource type="Texture2D" uid="uid://dm2id6gdoawm3" path="res://assets/art/entity/boss/Boss_Hit.png" id="2_lygwu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jvel1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lygwu")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_1ugw5")
@@ -16,6 +26,7 @@ animations = [{
 [node name="boss" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_7o4qo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jvel1")
@@ -26,3 +37,8 @@ autoplay = "idle"
 position = Vector2(-11.8562, -9.69015)
 scale = Vector2(0.421649, 0.470231)
 polygon = PackedVector2Array(288.999, 556.514, 203.62, 269.421, 125.356, 14.2274, 158.559, -236.713, 58.9499, -313.271, -109.436, -211.194, -102.322, 20.6072, -358.458, 558.641)
+
+[node name="hitbox_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="hitbox_cooldown" to="." method="_on_hitbox_cooldown_timeout"]

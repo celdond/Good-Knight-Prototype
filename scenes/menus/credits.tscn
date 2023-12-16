@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyk0v1hahhmow"]
+
+[ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_a86bm"]
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_a86bm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="Cody" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 285.0
+offset_top = 365.0
+offset_right = 389.0
+offset_bottom = 391.0
+text = "Cody E. Doyle"
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 255.0
+offset_top = 393.0
+offset_right = 417.0
+offset_bottom = 419.0
+text = "Developer and Music"
+
+[node name="Andre" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 204.0
+offset_top = 101.0
+offset_right = 289.0
+offset_bottom = 127.0
+text = "Andre Lam"
+
+[node name="Label2" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 187.0
+offset_top = 132.0
+offset_right = 301.0
+offset_bottom = 158.0
+text = "Art and Design"
+
+[node name="Jason" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 824.0
+offset_top = 152.0
+offset_right = 969.0
+offset_bottom = 178.0
+text = "Jason Kai Mendoza"
+
+[node name="Label3" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 862.0
+offset_top = 183.0
+offset_right = 930.0
+offset_bottom = 209.0
+text = "Planning"
+
+[node name="YvngLvngCanc3r" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 838.0
+offset_top = 415.0
+offset_right = 965.0
+offset_bottom = 441.0
+text = "YvngLvngCanc3r"
+
+[node name="Label4" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 877.0
+offset_top = 445.0
+offset_right = 923.0
+offset_bottom = 471.0
+text = "Music"
+
+[node name="Oops" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 479.0
+offset_top = 260.0
+offset_right = 627.0
+offset_bottom = 286.0
+text = "Oops, no boss fight"

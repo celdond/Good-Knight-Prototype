@@ -152,7 +152,7 @@ cell_quadrant_size = 24
 format = 2
 
 [node name="player" parent="." instance=ExtResource("3_mi2c4")]
-position = Vector2(-7, 75)
+position = Vector2(5787, 66)
 collision_layer = 4
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
@@ -381,7 +381,7 @@ position = Vector2(6878, 934)
 slide_on_ceiling = false
 
 [node name="CameraForPlatforming" type="Camera2D" parent="."]
-position = Vector2(-7, 75)
+position = Vector2(5787, 66)
 offset = Vector2(0, -20)
 zoom = Vector2(1.5, 1.5)
 limit_left = -91
