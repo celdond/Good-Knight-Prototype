@@ -350,7 +350,7 @@ position = Vector2(6878, 934)
 slide_on_ceiling = false
 
 [node name="CameraForPlatforming" type="Camera2D" parent="."]
-position = Vector2(-209, -35)
+position = Vector2(-7, 75)
 offset = Vector2(0, -20)
 zoom = Vector2(1.5, 1.5)
 limit_left = -91
