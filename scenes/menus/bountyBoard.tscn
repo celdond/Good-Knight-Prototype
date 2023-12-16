@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxeubfbkadcn"]
+[gd_scene load_steps=10 format=3 uid="uid://cxeubfbkadcn"]
 
 [ext_resource type="Script" path="res://scripts/meta_functions/Contracts.cs" id="1_2m5yi"]
-[ext_resource type="Texture2D" uid="uid://cxtqqycflm454" path="res://assets/letterTemplate.png" id="2_wlni2"]
-[ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="3_8c11y"]
+[ext_resource type="Texture2D" uid="uid://mysd40yd8e2n" path="res://assets/art/menu/Menu_Background.png" id="2_nishe"]
+[ext_resource type="Texture2D" uid="uid://cls2l3v0wxt1q" path="res://assets/art/menu/Play_Inactive.png" id="2_vsdkb"]
+[ext_resource type="Texture2D" uid="uid://cwwkx06pbe0s4" path="res://assets/art/menu/Play_Active.png" id="3_um4ye"]
 [ext_resource type="AudioStream" uid="uid://c2wv2q3aed8vn" path="res://assets/music/board.mp3" id="4_0ldxh"]
+[ext_resource type="Texture2D" uid="uid://dd2y3bflphjbm" path="res://assets/art/menu/Exit_Inactive.png" id="4_nww60"]
+[ext_resource type="Texture2D" uid="uid://cjm431675cj8f" path="res://assets/art/menu/Exit_Active.png" id="5_3wjqg"]
+[ext_resource type="Texture2D" uid="uid://n5ftbcjnajtf" path="res://assets/art/menu/Settings_Inactive.png" id="6_lbvlr"]
+[ext_resource type="Texture2D" uid="uid://brvo4mj7g7gtq" path="res://assets/art/menu/Settings_Active.png" id="7_upt12"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2m5yi")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_direction = 1
@@ -24,88 +30,29 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
 
-[node name="BountyBoard" type="VBoxContainer" parent="MarginContainer/CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.046
-anchor_top = 0.071
-anchor_right = 0.783
-anchor_bottom = 0.915
-offset_left = 0.00799561
-offset_top = -0.00800323
-offset_right = -0.0160522
-offset_bottom = 2.07996
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_2m5yi")
+[node name="Play" type="TextureButton" parent="MarginContainer/CanvasLayer"]
+offset_left = 673.0
+offset_top = 62.0
+offset_right = 1045.0
+offset_bottom = 232.0
+texture_normal = ExtResource("2_vsdkb")
+texture_hover = ExtResource("3_um4ye")
 
-[node name="Panel" type="Panel" parent="MarginContainer/CanvasLayer/BountyBoard"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.2
+[node name="Exit" type="TextureButton" parent="MarginContainer/CanvasLayer"]
+offset_left = 684.0
+offset_top = 467.0
+offset_right = 1056.0
+offset_bottom = 637.0
+texture_normal = ExtResource("4_nww60")
+texture_hover = ExtResource("5_3wjqg")
 
-[node name="Posts" type="Panel" parent="MarginContainer/CanvasLayer/BountyBoard"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BoardMargin" type="MarginContainer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 7.0
-offset_right = -9.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Board" type="CanvasLayer" parent="MarginContainer/CanvasLayer/BountyBoard/Posts/BoardMargin"]
-
-[node name="Contract 1" type="TextureButton" parent="MarginContainer/CanvasLayer/BountyBoard/Posts/BoardMargin/Board"]
-anchors_preset = -1
-anchor_left = 0.334
-anchor_top = 0.383
-anchor_right = 0.472
-anchor_bottom = 0.699
-offset_left = 0.231964
-offset_top = -0.18399
-offset_right = 632.256
-offset_bottom = 819.048
-scale = Vector2(0.2, 0.2)
-texture_normal = ExtResource("2_wlni2")
-
-[node name="Game Menu" type="VBoxContainer" parent="MarginContainer/CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.798
-anchor_top = 0.071
-anchor_right = 0.965
-anchor_bottom = 0.918
-offset_left = -0.295959
-offset_top = -0.00800323
-offset_right = 0.320068
-offset_bottom = -255.864
-
-[node name="Panel" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CanvasLayer/Game Menu/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.403
-anchor_right = 1.0
-anchor_bottom = 0.619
-offset_left = 1.0
-offset_top = -0.00200272
-offset_right = 1.0
-offset_bottom = 0.0540009
-grow_horizontal = 2
-grow_vertical = 2
-text = "Example"
-
-[node name="Panel2" type="Panel" parent="MarginContainer/CanvasLayer/Game Menu"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="Settings" type="TextureButton" parent="MarginContainer/CanvasLayer"]
+offset_left = 579.0
+offset_top = 268.0
+offset_right = 950.0
+offset_bottom = 438.0
+texture_normal = ExtResource("6_lbvlr")
+texture_hover = ExtResource("7_upt12")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -114,11 +61,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_8c11y")
+texture = ExtResource("2_nishe")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0ldxh")
 volume_db = -12.38
 autoplay = true
 
-[connection signal="button_down" from="MarginContainer/CanvasLayer/BountyBoard/Posts/BoardMargin/Board/Contract 1" to="MarginContainer/CanvasLayer/BountyBoard" method="_on_contract_button_down" binds= [1]]
+[connection signal="button_down" from="MarginContainer/CanvasLayer/Play" to="." method="_on_contract_button_down" binds= [1]]
+[connection signal="button_down" from="MarginContainer/CanvasLayer/Exit" to="." method="_on_exit_button_down"]
