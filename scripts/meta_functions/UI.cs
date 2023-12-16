@@ -5,8 +5,10 @@ public partial class UI : CanvasLayer
 {
 	private CustomAlerts CustomAlerts;
 	private PlayerStats PlayerStats;
-	public ProgressBar lives;
-	public ProgressBar health;
+	public Control lifeBar;
+	public Control healthBar;
+	public int lives;
+	public int health;
 	public Control deathMenu;
 	public Control pauseMenu;
 	public Control deadEndMenu;
@@ -16,13 +18,11 @@ public partial class UI : CanvasLayer
 	{
 		PlayerStats = GetNode<PlayerStats>("/root/contract1/PlayerStats");
 		CustomAlerts = GetNode<CustomAlerts>("/root/contract1/CustomAlerts");
-		lives = GetNode<ProgressBar>("/root/contract1/UI/UIControl/Lives");
-		health = GetNode<ProgressBar>("/root/contract1/UI/UIControl/Health");
+		healthBar = GetNode<Control>("/root/contract1/UI/UIControl/LivingStatus");
+		lifeBar = GetNode<Control>("/root/contract1/UI/UIControl/DeadStatus");
 		deathMenu = GetNode<Control>("/root/contract1/UI/UIControl/DeathMenu");
 		pauseMenu = GetNode<Control>("/root/contract1/UI/UIControl/PauseMenu");
 		deadEndMenu = GetNode<Control>("/root/contract1/UI/UIControl/DeadEndMenu");
-		lives.Value = 3;
-		health.Value = 3;
 		CustomAlerts.LivesChange += LivesBarChange;
 		CustomAlerts.HPChange += HealthBarChange;
 	}
@@ -57,15 +57,17 @@ public partial class UI : CanvasLayer
 	public void _on_spirit_pressed() {
 		UIOpen = false;
 		deathMenu.Hide();
+		healthBar.Hide();
+		lifeBar.Show();
 		PlayerStats._summon_spirit();
 	}
 
 	private void HealthBarChange(int new_hp) {
-		health.Value = new_hp;
+		health = new_hp;
 	}
 
 	private void LivesBarChange(int new_lives, bool end) {
-		lives.Value = new_lives;
+		lives = new_lives;
 		UIOpen = true;
 		if (end) {
 			deadEndMenu.Show();

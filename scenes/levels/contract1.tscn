@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjxl1f45mvn24"]
+[gd_scene load_steps=30 format=3 uid="uid://bjxl1f45mvn24"]
 
 [ext_resource type="Texture2D" uid="uid://bvf5774nfkymm" path="res://assets/contract1_background.png" id="1_pmll8"]
 [ext_resource type="Texture2D" uid="uid://bv0v6x2a2tafn" path="res://assets/tileset.png" id="2_r2r2u"]
@@ -10,9 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://c0fky76f64ctb" path="res://assets/music/unnamed.mp3" id="6_y2pg4"]
 [ext_resource type="PackedScene" uid="uid://cunyc4qvsjny7" path="res://scenes/entities/boss.tscn" id="7_2loth"]
 [ext_resource type="PackedScene" uid="uid://c8yv08no6waol" path="res://scenes/entities/border.tscn" id="8_412h2"]
+[ext_resource type="Texture2D" uid="uid://bobnejad81mjg" path="res://assets/art/menu/status/Player_Alive_Profile.png" id="9_7f57n"]
+[ext_resource type="Texture2D" uid="uid://dua7kb7owxjqw" path="res://assets/art/menu/status/Full_Heart.png" id="10_64vnr"]
 [ext_resource type="Script" path="res://scripts/meta_functions/DeathZone.cs" id="10_id4o3"]
 [ext_resource type="Script" path="res://scripts/meta_functions/CameraSwap.cs" id="10_rcrar"]
 [ext_resource type="Script" path="res://scripts/CustomAlerts.cs" id="11_su07k"]
+[ext_resource type="Texture2D" uid="uid://tteqkoji0f71" path="res://assets/art/menu/status/Player_Spirit_Profile.png" id="11_v651q"]
+[ext_resource type="Texture2D" uid="uid://ctnafj3m754dx" path="res://assets/art/menu/status/Spirit_Heart.png" id="12_yutn4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ufk3"]
 texture = ExtResource("2_r2r2u")
@@ -188,26 +192,6 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Lives" type="ProgressBar" parent="UI/UIControl"]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 24.0
-offset_right = 159.0
-offset_bottom = 51.0
-max_value = 3.0
-step = 1.0
-value = 3.0
-
-[node name="Health" type="ProgressBar" parent="UI/UIControl"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 59.0
-offset_right = 160.0
-offset_bottom = 86.0
-max_value = 3.0
-step = 1.0
-value = 3.0
-
 [node name="DeathMenu" type="Control" parent="UI/UIControl"]
 visible = false
 layout_mode = 1
@@ -339,6 +323,53 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit Contract"
+
+[node name="LivingStatus" type="Control" parent="UI/UIControl"]
+anchors_preset = 0
+offset_right = 322.0
+offset_bottom = 125.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/UIControl/LivingStatus"]
+texture_filter = 1
+layout_mode = 2
+offset_right = 122.0
+offset_bottom = 125.0
+texture = ExtResource("9_7f57n")
+
+[node name="HealthBar" type="TextureRect" parent="UI/UIControl/LivingStatus"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 17.0
+offset_right = 224.0
+offset_bottom = 65.0
+scale = Vector2(2, 2)
+texture = ExtResource("10_64vnr")
+stretch_mode = 1
+
+[node name="DeadStatus" type="Control" parent="UI/UIControl"]
+visible = false
+anchors_preset = 0
+offset_right = 322.0
+offset_bottom = 125.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/UIControl/DeadStatus"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 125.0
+texture = ExtResource("11_v651q")
+
+[node name="LifeBar" type="TextureRect" parent="UI/UIControl/DeadStatus"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 226.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+texture = ExtResource("12_yutn4")
+stretch_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_y2pg4")

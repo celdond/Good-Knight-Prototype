@@ -6,12 +6,14 @@ public partial class PlayerStats : Node
 {
 	private CharacterBody2D Player;
 	private CharacterBody2D Spirit;
+	private UI uiScripts;
 	public int lives = 3;
 	public int hp = 3;
 	public override void _Ready()
 	{
 		Player = GetNode<CharacterBody2D>("/root/contract1/player");
 		Spirit = GetNode<CharacterBody2D>("/root/contract1/Spirit");
+		uiScripts = GetNode<UI>("/root/contract1/UI");
 	}
 
 	public void _lives_update(int new_lives)
@@ -26,6 +28,8 @@ public partial class PlayerStats : Node
 		Player.Position = placement;
 		Spirit.Position = summon_place;
 		Spirit.Call("_enable");
+		uiScripts.healthBar.Hide();
+		uiScripts.lifeBar.Show();
 	}
 
 	public void _revive()
@@ -35,5 +39,7 @@ public partial class PlayerStats : Node
 		Spirit.Position = placement;
 		Player.Position = revive_place;
 		Player.Call("_enable");
+		uiScripts.lifeBar.Hide();
+		uiScripts.healthBar.Show();
 	}
 }
