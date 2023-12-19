@@ -22,8 +22,9 @@ https://totallyshogun.itch.io/good-knight-prototype
 
 To open the project in Godot, you will need:
 
+```
 Godot v4.1.2 .NET
-
 .NET v6.0+
+```
 
 Clone this repository and import the project into Godot.
